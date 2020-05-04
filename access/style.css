@@ -1,0 +1,118 @@
+body {
+  background-color: beige;
+  height: 100vh;
+}
+.navBar {
+  border: 1px solid black;
+  font-size: 35px;
+  padding: 10px;
+  text-align: center;
+}
+
+#logo {
+  width: 5%;
+}
+
+.form-container {
+  text-align: center;
+}
+
+.card {
+  margin: auto;
+  text-align: center;
+  height: fit-content;
+  border: 1px solid black;
+}
+
+.main-container {
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.main-card-img {
+  width: 20%;
+}
+
+.body-middle-containerwrap {
+  display: flex;
+  margin: 10px;
+  height: fit-content;
+  align-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.body-middle-left-container,
+.body-middle-right-container {
+  display: flex;
+  margin: 10px;
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.opponent-item-container {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#item1-left-picture,
+#item2-left-picture,
+#item3-left-picture {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+#item1-left-name,
+#item2-left-name,
+#item3-left-name {
+  border: 1px solid black;
+  width: 100px;
+  height: 30px;
+}
+
+#item1-left-type,
+#item2-left-type,
+#item3-left-type {
+  border: 1px solid black;
+  width: 100px;
+  height: 30px;
+}
+
+#item1-right-picture,
+#item2-right-picture,
+#item3-right-picture {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+#item1-right-name,
+#item2-right-name,
+#item3-right-name {
+  border: 1px solid black;
+  width: 100px;
+  height: 30px;
+}
+
+#item1-right-type,
+#item2-right-type,
+#item3-right-type {
+  border: 1px solid black;
+  width: 100px;
+  height: 30px;
+}
+
+.footer {
+  border: 1px solid black;
+}
