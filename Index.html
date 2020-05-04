@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./access/style.css" />
+    <title>Ōkido's Pokémon Research Institute</title>
+  </head>
+  <div>
+    <!-- Nav Bar-->
+    <nav class="navBar">
+      <a href="Index.html"><img src="./access/Images/header_logo_project_1.png" alt="" id="logo"></a>
+      <a href="Index.html" id="main-header">Ōkido's Pokémon Research Institute</a>
+    </nav>
+    <!-- body-top -->
+    <form class="form-container">
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="Enter Name of Pokemon"
+        />
+      </div>
+      <button id="searchPokemon" type="submit" class="btn btn-primary">
+        Search
+      </button>
+    </form>
+    <!--body- middle - Left - Against Strong && body- middle - Right - Against Weak-->
+    <div class="main-container">
+      <div id="body-main-pokemon"></div>
+      <div class="body-middle-containerwrap">
+        <div class="body-middle-left-container">
+          <div class="opponent-item-container">
+            <div id= item1-left-picture></div>
+            <div id= item1-left-name></div>
+            <div id= item1-left-type></div>
+          </div>
+          <div class="opponent-item-container">
+            <div id= item2-left-picture></div>
+            <div id= item2-left-name></div>
+            <div id= item2-left-type></div>
+          </div>
+          <div class="opponent-item-container">
+            <div id= item3-left-picture></div>
+            <div id= item3-left-name></div>
+            <div id= item3-left-type></div>
+          </div>
+        </div>
+        <div class="body-middle-right-container">
+          <div class="opponent-item-container">
+            <div id= item1-right-picture></div>
+            <div id= item1-right-name></div>
+            <div id= item1-right-type></div>
+          </div>
+          <div class="opponent-item-container">
+            <div id= item2-right-picture></div>
+            <div id= item2-right-name></div>
+            <div id= item2-right-type></div>
+          </div>
+          <div class="opponent-item-container">
+            <div id= item3-right-picture></div>
+            <div id= item3-right-name></div>
+            <div id= item3-right-type></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <footer class="footer">Footer</footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./access/script.js"></script>
+  </body>
+</html>
