@@ -1,71 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-      <form>
-        <input
-        type="text"
-        id="searchText"
-        placeholder="Enter any number"
-      /><input type="submit" id="searchBtn">
-      </input>
-    </form>
-    <div class="maincard"></div>
-    <script>
-      document
-        .getElementById('searchBtn')
-        .addEventListener('click', (event) => {
-          event.preventDefault();
-          if (document.getElementById('searchText').value.length > 1) {
-            fetch(
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <form>
+    <input type="text" id="searchText" placeholder="Enter any number" /><input type="submit" id="searchBtn">
+    </input>
+  </form>
+  <div class="maincard"></div>
+  <div id="pokemon4" class="pokemonWeakness"></div>
+  <script>
+    document
+      .getElementById('searchBtn')
+      .addEventListener('click', (event) => {
+        event.preventDefault();
+        if (document.getElementById('searchText').value.length > 1) {
+          fetch(
               `https://pokeapi.co/api/v2/pokemon/${
                 document.getElementById('searchText').value
               }/`
             )
-              .then((r) => r.json())
-              .then((data) => {
-                let pokeInfo = document.createElement('div');
-                let types_of_data = data.types.map(type=>type.type.name).join(', ')
-                pokeInfo.innerHTML = `
+            .then((r) => r.json())
+            .then((data) => {
+              let pokeInfo = document.createElement('div');
+              let types_of_data = data.types.map(type => type.type.name).join(', ')
+              pokeInfo.innerHTML = `
                 <p class="name">${data.name}</p>
               <li>type:${types_of_data}</li>
-              <li>weak against:</li>
+              <li>weak against:${data.name}</li>
               <li>strong against:</li>
             </ul>
           </div>`;
-          pokeInfo.className = 'pokemoninfocard';
-                fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
-                  .then((r) => r.json())
-                  .then((data)=>{
-                    let weakAgainstArray = [];
-                    let strongAgainstArray = [];
-                    let nodmgto = data.damage_relations.no_damage_to
-                    let doubledmgfrom = data.damage_relations.double_damage_from
+          console.log ("Type:", data.types[0].type.name)
+              pokeInfo.className = 'pokemoninfocard';
+              fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
+                .then((r) => r.json())
+                .then((data) => {
+                  let weakAgainstArray = [];
+                  let strongAgainstArray = [];
+                  let nodmgto = data.damage_relations.no_damage_to
+                  let doubledmgfrom = data.damage_relations.double_damage_from
 
-                    let nodmgfrom = data.damage_relations.no_damage_from
-                    let doubledmgto = data.damage_relations.double_damage_to
-
-
-                      weakAgainstArray.push(nodmgto)
-                      weakAgainstArray.push(doubledmgfrom)
-                      
-                      strongAgainstArray.push(nodmgfrom)
-                      strongAgainstArray.push(doubledmgto)
+                  let nodmgfrom = data.damage_relations.no_damage_from
+                  let doubledmgto = data.damage_relations.double_damage_to
 
 
-                    console.log(weakAgainstArray);
-                    console.log(strongAgainstArray);
-                  })
-                document.getElementById('searchText').value = '';
-                document.querySelector('.maincard').append(pokeInfo);
-              });
-          }
-        });
-    </script>
-  </body>
+                  weakAgainstArray.push(nodmgto)
+                  weakAgainstArray.push(doubledmgfrom)
+
+                  strongAgainstArray.push(nodmgfrom)
+                  strongAgainstArray.push(doubledmgto)
+
+
+                  
+                  // if ((weakAgainstArray[1])[0].name) = "water";
+                  if (JSON.stringify(("Weak against:", (weakAgainstArray[1])[0].name).value = "water"))
+                  {
+                    console.log("Penis")
+                    fetch('https://pokeapi.co/api/v2/pokemon/pikachu/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'pikachudiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                        
+
+                    </ul>
+                 </div>
+                    `
+                          
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        fetch('https://pokeapi.co/api/v2/pokemon/raichu/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'raichudiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+
+                        //pokemon 3
+                        fetch('https://pokeapi.co/api/v2/pokemon/magneton/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'magnetondiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // pokemon 4
+                        fetch('https://pokeapi.co/api/v2/pokemon/voltorb/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'voltorbdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // pokemon 5
+                        fetch('https://pokeapi.co/api/v2/pokemon/electrode/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'electrodediv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //6
+                        fetch('https://pokeapi.co/api/v2/pokemon/electabuzz/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'electabuzdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //7 pokemon
+                        fetch('https://pokeapi.co/api/v2/pokemon/jolteon/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'jolteondiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //8th pokemon thunder
+
+                        fetch('https://pokeapi.co/api/v2/pokemon/zapdos/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'zapdosdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //1st grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/bulbasaur/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'bulbasaurdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 2 second grass
+
+                        fetch('https://pokeapi.co/api/v2/pokemon/ivysaur/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'ivysaurdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 3 third grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/venusaur/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'venusaurdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 4th grass 
+                        fetch('https://pokeapi.co/api/v2/pokemon/oddish/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'oddishdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 5th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/gloom/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement('gloomdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 6th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/vileplume/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'vileplumediv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 7th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/paras/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement('parasdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //8th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/parasect/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'parasectdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 9th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/bellsprout/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'bellsproutdiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 10th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/weepinbell/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'weepinbelldiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        // 11th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/victreebel/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'victreebeldiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //12th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/exeggcute/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'exeggcutediv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //13th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/exeggutor/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'exeggutordiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+                        //14th grass
+                        fetch('https://pokeapi.co/api/v2/pokemon/tangela/')
+                            .then(r => r.json())
+                            .then(pokemon => {
+                                console.log(pokemon) // this just console logs the pokemon selected
+                                let pokeElem = document.createElement(
+                                    'tangeladiv') // creates div with id pokemon
+                                pokeElem.className = 'card' // adds 'card' class to created pokeElem
+                                pokeElem.style = 'width: 18rem;'
+                                pokeElem.innerHTML = `
+                    <img class="card-img-top" 
+                    src="${pokemon.sprites.front_default}" 
+                    alt="${pokemon.name}"> 
+                    <div class="card-body">
+                    <h5 class="card-title">${pokemon.name}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${pokemon.types[0].type.name}</li>
+                       
+
+                    </ul>
+                 </div>
+                    `
+                                // should be pokemon weakness div//  
+                                document.getElementById("pokemon4").append(pokeElem)
+                            })
+
+                  }
+
+                  console.log("Weak against:",(weakAgainstArray[1])[1].name);
+
+                  console.log("Strong against:",(strongAgainstArray[1])[0].name);
+                  console.log("Strong against:",(strongAgainstArray[1])[1].name);
+                  
+                })
+              document.getElementById('searchText').value = '';
+              document.querySelector('.maincard').append(pokeInfo);
+            });
+        }
+      });
+  </script>
+</body>
+
 </html>
