@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <form>
+        <input
+        type="text"
+        id="searchText"
+        placeholder="Enter any number"
+      /><input type="submit" id="searchBtn">
+      </input>
+    </form>
+    <div class="maincard"></div>
+    <script>
+      document
+        .getElementById('searchBtn')
+        .addEventListener('click', (event) => {
+          event.preventDefault();
+          if (document.getElementById('searchText').value.length > 1) {
+            fetch(
+              `https://pokeapi.co/api/v2/pokemon/${
+                document.getElementById('searchText').value
+              }/`
+            )
+              .then((r) => r.json())
+              .then((data) => {
+                let pokeInfo = document.createElement('div');
+                let types_of_data = data.types.map(type=>type.type.name).join(', ')
+                pokeInfo.innerHTML = `
+                <p class="name">${data.name}</p>
+              <li>type:${types_of_data}</li>
+              <li>weak against:</li>
+              <li>strong against:</li>
+            </ul>
+          </div>`;
+          pokeInfo.className = 'pokemoninfocard';
+                fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
+                  .then((r) => r.json())
+                  .then((data)=>{
+                    let weakAgainstArray = [];
+                    let strongAgainstArray = [];
+                    let nodmgto = data.damage_relations.no_damage_to
+                    let doubledmgfrom = data.damage_relations.double_damage_from
+
+                    let nodmgfrom = data.damage_relations.no_damage_from
+                    let doubledmgto = data.damage_relations.double_damage_to
+
+
+                      weakAgainstArray.push(nodmgto)
+                      weakAgainstArray.push(doubledmgfrom)
+                      
+                      strongAgainstArray.push(nodmgfrom)
+                      strongAgainstArray.push(doubledmgto)
+
+
+                    console.log(weakAgainstArray);
+                    console.log(strongAgainstArray);
+                  })
+                document.getElementById('searchText').value = '';
+                document.querySelector('.maincard').append(pokeInfo);
+              });
+          }
+        });
+    </script>
+  </body>
+</html>
