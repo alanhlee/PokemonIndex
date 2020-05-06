@@ -25,28 +25,28 @@
 //         </div>
 //       </div>`;
 
-//         // <li class="main-card-list-item-ability">
-//         //     abilities: ${pokemon.abilities[0].ability.name},
-//         //     ${pokemon.abilities[1].ability.name}
-//         // </li>
-//         // <li class="main-card-list-item-stats0">
-//         //     ${pokemon.stats[0].stat.name}: ${pokemon.stats[0].base_stat}
-//         // </li>
-//         // <li class="main-card-list-item-stats1">
-//         //     ${pokemon.stats[1].stat.name}: ${pokemon.stats[1].base_stat}
-//         // </li>
-//         // <li class="main-card-list-item-stats2">
-//         //     ${pokemon.stats[2].stat.name}: ${pokemon.stats[2].base_stat}
-//         // </li>
-//         // <li class="main-card-list-item-stats3">
-//         //     ${pokemon.stats[3].stat.name}: ${pokemon.stats[3].base_stat}
-//         // </li>
-//         // <li class="main-card-list-item-stats4">
-//         //     ${pokemon.stats[4].stat.name}: ${pokemon.stats[4].base_stat}
-//         // </li>
-//         // <li class="main-card-list-item-stats6">
-//         //     ${pokemon.stats[5].stat.name}: ${pokemon.stats[5].base_stat}
-//         // </li>
+//         <li class="main-card-list-item-ability">
+//             abilities: ${pokemon.abilities[0].ability.name},
+//             ${pokemon.abilities[1].ability.name}
+//         </li>
+//         <li class="main-card-list-item-stats0">
+//             ${pokemon.stats[0].stat.name}: ${pokemon.stats[0].base_stat}
+//         </li>
+//         <li class="main-card-list-item-stats1">
+//             ${pokemon.stats[1].stat.name}: ${pokemon.stats[1].base_stat}
+//         </li>
+//         <li class="main-card-list-item-stats2">
+//             ${pokemon.stats[2].stat.name}: ${pokemon.stats[2].base_stat}
+//         </li>
+//         <li class="main-card-list-item-stats3">
+//             ${pokemon.stats[3].stat.name}: ${pokemon.stats[3].base_stat}
+//         </li>
+//         <li class="main-card-list-item-stats4">
+//             ${pokemon.stats[4].stat.name}: ${pokemon.stats[4].base_stat}
+//         </li>
+//         <li class="main-card-list-item-stats6">
+//             ${pokemon.stats[5].stat.name}: ${pokemon.stats[5].base_stat}
+//         </li>
 
 //         document.getElementById('nameInput').value = '';
 //         document.getElementById('body-main-pokemon').innerHTML = '';
@@ -60,3 +60,21 @@
 //       });
 //   }
 // });
+
+
+// line 57 card 
+document.getElementById('tcgLink').addEventListener('click', (e) => {
+  e.preventDefault()
+
+  fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
+    .then(r => r.json())
+    .then(pokemonData => {
+      let cardIndex = 0
+      console.log(pokemonData)
+      console.log(pokemonData.cards[0])
+      document.getElementById('tcgLink').innerHTML =
+        `
+    <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
+    `
+    })
+})
