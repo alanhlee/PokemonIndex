@@ -70,8 +70,8 @@ document.getElementById('tcgLink').addEventListener('click', (e) => {
     .then(r => r.json())
     .then(pokemonData => {
       let cardIndex = 0
-      console.log(pokemonData)
-      console.log(pokemonData.cards[0])
+      // console.log(pokemonData)
+      // console.log(pokemonData.cards[0])
       document.getElementById('tcgLink').innerHTML =
         `
     <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
