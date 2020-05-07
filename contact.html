@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Personolaized CSS -->
+    <link rel="stylesheet" type="text/css" href="./access/contact.css" />
+
+    <title>Contact Us</title>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <div class="navbar-fixed">
+      <nav class="red">
+        <div class="nav-wrapper">
+          <a id="logo-container" href="./contact.html" class="brand-logo center"
+            >Contact Us</a
+          >
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./aboutus.html">About Us</a></li>
+            <li><a href="./pokedex.html">Pokédex </a></li>
+            <!-- <li><a href="#">Search by Type</a></li> -->
+            <li><a href="./contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul id="nav-mobile" class="sidenav">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./aboutus.html">About Us</a></li>
+      <li><a href="./pokedex.html">Pokédex </a></li>
+      <!-- <li><a href="#">Search by Type</a></li> -->
+      <li><a href="./contact.html">Contact Us</a></li>
+    </ul>
+
+    <!-- Start of contact form -->
+
+    <h3></h3>
+
+    <div class="container">
+      <form action="contact.html">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="firstname"
+          placeholder="Your name.."
+        />
+
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          id="lname"
+          name="lastname"
+          placeholder="Your last name.."
+        />
+
+        <label for="subject">Give us your email and some information</label>
+
+        <textarea
+          id="subject"
+          name="subject"
+          placeholder="Email here.."
+          style="height: 200px;"
+        ></textarea>
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <!-- Jquer1y  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+      });
+    </script>
+  </body>
+</html>

@@ -17,17 +17,20 @@
   padding-top: 10px;
 }
 
-.btn{
+.btn {
   background-color: #f44336;
 }
 
 /* dropdown icon CSS */
 .sidenav-trigger {
-  left: 300px;
   color: white;
 }
 
 /* main card CSS */
+#main-card{
+  border-bottom: 1.5rem solid black;
+}
+
 .row {
   height: 100vh;
   justify-content: center;
@@ -39,11 +42,17 @@
 }
 
 .col {
-  margin-bottom: 100px;
+  margin-bottom: 15px;
+  justify-content: baseline;
 }
 
 .main-card-img {
   height: 70%;
-  width: 70%;
+  width: 100%;
   margin: auto;
+}
+
+.card{
+  margin:0px;
+  margin-bottom: 10px;
 }
