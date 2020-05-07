@@ -1,7 +1,7 @@
 document.getElementById('searchBtn').addEventListener('click', (event) => {
   event.preventDefault();
-  //   document.getElementById('weaktitle').innerHTML = '<h5>Weak against</h5>';
-  //   document.getElementById('strongtitle').innerHTML = '<h5>Strong against</h5>';
+    document.getElementById('weaktitle').innerHTML = '<h5>Weak against(L) Strong against(R)</h5>'
+    // document.getElementById('strongtitle').innerHTML = '<h5>Strong against</h5>';
 
   if (document.getElementById('search').value.length > 1) {
     fetch(
@@ -11,28 +11,31 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
     )
       .then((r) => r.json())
       .then((data1) => {
+        //IF WE DONT FIX ONIX, THEN WE REMOVE MAP?_2PM DEADLINE
         let types_of_data = data1.types
           .map((eachobj) => eachobj.type.name)
-          .join(', ');
-        document.getElementById('main-card').innerHTML = `
-                <div class="col s12">
-                <div class="card main-card-img">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator pokemoninfocard" src="${data1.sprites.front_default}">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">${data1.name}<i class="material-icons right">more_vert</i></span>
-                  </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
-                    <p>
-                    <div class="name">Name: ${data1.name}</div>
-                    <div>Type: ${types_of_data}</div>
-                    </p>
-                    <p><a href="#">This is evolution link</a></p>
-                  </div>
-                </div>`;
-
+          .join(', ')
+          document.getElementById('main-card').innerHTML = `
+          <div class="col s12">
+          <div class="card main-card-img">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator pokemoninfocard" src="${data1.sprites.front_default}">
+          </div>
+          <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">${data1.name}<i class="material-icons right">more_vert</i></span>
+          </div>
+          <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
+          <p>
+          <div class="name">Name: ${data1.name}</div>
+          <div>Type: ${types_of_data}</div>
+          <div>ID: ${data1.id}</div>
+          </p>
+          <p><a id="tcgLink">Click for a random TCG card image</a></p>
+          </div>
+          </div>`;
+          
+          // types_of_data.forEactypes_of_data)=>{
         fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
           .then((r) => r.json())
           .then((data) => {
@@ -97,6 +100,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                               <a href="#">This is evolution link</a>
                             </div>
                           </div>`;
+                      
                       document.getElementById('weak-card').append(weakCardDiv);
                     } else if (alltypes.includes(filteredStrong[i])) {
                       let strongCardDiv = document.createElement('div');
@@ -131,7 +135,20 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                 });
             }
           });
-        document.getElementById('search').value = '';
-      });
+        document.getElementById('tcgLink').addEventListener('click', (e) => {
+          e.preventDefault()
+
+          fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
+            .then(r => r.json())
+            .then(pokemonData => {
+              let cardIndex = 0
+              document.getElementById('tcgLink').innerHTML =
+              `
+              <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
+              `
+            })
+        })
+    })
   }
 });
+
