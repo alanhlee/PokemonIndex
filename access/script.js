@@ -78,3 +78,16 @@ document.getElementById('tcgLink').addEventListener('click', (e) => {
     `
     })
 })
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, options);
+});
+
+// Calumbelot05/04/2020
+// git checkout(branchname)
+// git pull origin master
+// git add
+// git commit
+// git push origin(branchname)
