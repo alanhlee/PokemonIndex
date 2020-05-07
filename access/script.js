@@ -1,30 +1,15 @@
-// document.getElementById('search').addEventListener('click', (event) => {
-//   event.preventDefault();
+function checkForDirectLink() {
+  let query = window.location.search.split('?');
+  query = query.find(x => x.includes('id='));
+  if (typeof query !== 'undefined' && query !== '') {
+    let id = query.match(/id=([0-9]+)/)[1];
+    getPokemon(id);
+  }
 
-//   if (document.getElementById('nameInput').value.length > 1) {
-//     fetch(
-//       `https://pokeapi.co/api/v2/pokemon/${document
-//         .getElementById('nameInput')
-//         .value.toLowerCase()}/`
-//     )
-//       .then((r) => r.json())
-//       .then((pokemon) => {
-//         let pokeElem = document.createElement('div');
-//         pokeElem.className = 'card medium';
-//         pokeElem.innerHTML = `<div class="card-image">
-//         <img src="${pokemon.sprites.front_default}"alt="${pokemon.name}">
-//           <span class="card-title"></span>
-//           <a class="btn-floating halfway-fab waves-effect waves-light red"
-//             ><i class="arrow_drop_down">add</i></a
-//           >
-//         </div>
-//         <div class="card-content">
-//           <p>Name: ${pokemon.name.toUpperCase()}
-//           Type: ${pokemon.types.map((type) => type.type.name).join(', ')}
-//           </p>
-//         </div>
-//       </div>`;
+}
+checkForDirectLink();
 
+<<<<<<< HEAD
 //         <li class="main-card-list-item-ability">
 //             abilities: ${pokemon.abilities[0].ability.name},
 //             ${pokemon.abilities[1].ability.name}
@@ -91,3 +76,89 @@ document.addEventListener('DOMContentLoaded', function () {
 // git add
 // git commit
 // git push origin(branchname)
+=======
+document.getElementById('searchPokemon').addEventListener('click', (event) => {
+  event.preventDefault();
+  let inputValue = document.getElementById('nameInput').value;
+  if (inputValue.length > 1) {
+    let hits = allPokemon.filter(item => item.name.toLowerCase().includes(inputValue));
+    if (hits.length === 1) {
+      displayPokemon(hits[0])
+    }
+    // getPokemon(inputValue.toLowerCase());
+
+  }
+});
+function getPokemon(query) {
+  fetch(
+    `https://pokeapi.co/api/v2/pokemon/${query}/`
+  )
+    .then((r) => r.json())
+    .then((pokemon) => {
+      displayPokemon(pokemon);
+    })
+    .catch((e) => {
+      console.log(e);
+      //removed the alert due to the requirement.
+      document.getElementById('nameInput').value = '';
+      document.getElementById('body-main-pokemon').innerHTML = '';
+    });
+}
+
+function displayPokemon(pokemon) {
+  let pokeElem = document.createElement('div');
+  pokeElem.className = 'card';
+  pokeElem.innerHTML = `
+  <img 
+    src="${pokemon.sprites.front_default}" 
+    class="main-card-img" 
+    alt="${pokemon.name}">
+  <div class="main-card-body">
+    <h2 class="main-card-title">
+      ${pokemon.name.toUpperCase()}
+    </h2>
+    <div class="main-card-list">
+        <li class="main-card-list-item-type">
+            type: ${pokemon.types.map((type) => type.type.name).join(', ')}
+        </li>
+        <li class="main-card-list-item-ability">
+            abilities: ${pokemon.abilities[0].ability.name},
+            ${pokemon.abilities[1].ability.name}
+        </li>
+        <li class="main-card-list-item-stats0">
+            ${pokemon.stats[0].stat.name}: ${pokemon.stats[0].base_stat}
+        </li>
+        <li class="main-card-list-item-stats1">
+            ${pokemon.stats[1].stat.name}: ${pokemon.stats[1].base_stat}
+        </li>
+        <li class="main-card-list-item-stats2">
+            ${pokemon.stats[2].stat.name}: ${pokemon.stats[2].base_stat}
+        </li>
+        <li class="main-card-list-item-stats3">
+            ${pokemon.stats[3].stat.name}: ${pokemon.stats[3].base_stat}
+        </li>
+        <li class="main-card-list-item-stats4">
+            ${pokemon.stats[4].stat.name}: ${pokemon.stats[4].base_stat}
+        </li>
+        <li class="main-card-list-item-stats6">
+            ${pokemon.stats[5].stat.name}: ${pokemon.stats[5].base_stat}
+        </li>
+    </div>
+  </div>
+`;
+  document.getElementById('nameInput').value = '';
+  document.getElementById('body-main-pokemon').innerHTML = '';
+  document.getElementById('body-main-pokemon').append(pokeElem);
+}
+const allPokemon = [];
+
+function getAllPokemon() {
+  for (let i = 1; i <= 151; i++) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    fetch(url).then(r => r.json()).then(res => {
+      allPokemon.push(res);
+    });
+  }
+}
+getAllPokemon();
+>>>>>>> 050d936e02b005b65cacd53e70156edaa838e19c

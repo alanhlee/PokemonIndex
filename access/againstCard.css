@@ -1,0 +1,14 @@
+.mainCard{
+    display: flex;
+    margin: 30px 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
