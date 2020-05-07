@@ -135,3 +135,19 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
       });
   }
 });
+
+document.getElementById('tcgLink').addEventListener('click', (e) => {
+  e.preventDefault()
+
+  fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
+    .then(r => r.json())
+    .then(pokemonData => {
+      let cardIndex = 0
+      // console.log(pokemonData)
+      // console.log(pokemonData.cards[0])
+      document.getElementById('tcgLink').innerHTML =
+        `
+    <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
+    `
+    })
+})

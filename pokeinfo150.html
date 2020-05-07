@@ -78,54 +78,7 @@
     fetchPokemon();
 
 
-    /*
-
-     const pokemonHTMLArray = pokemon.map (pokedex => `
-     <li class="pokemon-details" data-pokemonId="${pokedex.id}">
-       <img src='${pokedex.image}'/>
-       <h2>${pokedex.name}</h2>
-       <p>#${pokedex.id}</p>
-       <p>${pokedex.type}</p>
-     </li>
-     `)
-     // .join('')
-     const li = document.createDocumentFragment();
-     pokemonHTMLArray.forEach(listElementHTML =>{
-
-       li.innerHTML = listElementHTML;
-       li.addEventListener('click',ev =>{
-         console.log(ev.target.dataset.pokemonId)
-       });
-       console.log(li);
-       pokedexContainer.appendChild(li);
-     })*/
-
-    /* pokedex.innerHTML = pokemonHTMLString;
-     pokedex.addEventListener('click',ev =>{
-       console.log(ev.target.dataset.pokemonId)
-     })*/
-
-
-
-            // .then(data => {
-            //   console.log(data);
-
-            //   const pokemon = {
-            //     name: data.name,
-            //     id: data.id,
-            //     image: data.sprites['front_default'],
-            //     type: data.types
-            //       .map(type => type.type.name)
-            //       .join(', ')
-            //   };
-            //   pokemon['name'] = data.name;
-            //   pokemon['id'] = data.id;
-            //   pokemon['image'] = data.sprites['front_default'];
-            //   pokemon['type'] = data.types
-            //     .map(type => type.type.name)
-            //     .join(', ');
-            //   console.log(pokemon);
-            // });
+  
 
   </script>
 </body>
