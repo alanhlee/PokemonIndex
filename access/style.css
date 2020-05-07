@@ -17,7 +17,7 @@
   padding-top: 10px;
 }
 
-.btn{
+.btn {
   background-color: #f44336;
 }
 
@@ -39,7 +39,8 @@
 }
 
 .col {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
+  justify-content: baseline;
 }
 
 .main-card-img {
