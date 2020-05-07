@@ -1,8 +1,7 @@
 document.getElementById('searchBtn').addEventListener('click', (event) => {
   event.preventDefault();
-    document.getElementById('weaktitle').innerHTML = '<h5>Weak against(L) Strong against(R)</h5>'
-    // document.getElementById('strongtitle').innerHTML = '<h5>Strong against</h5>';
-
+  document.getElementById('weaktitle').innerHTML =
+    '<h5>Weak against(L) Strong against(R)</h5>';
   if (document.getElementById('search').value.length > 1) {
     fetch(
       `https://pokeapi.co/api/v2/pokemon/${
@@ -14,8 +13,8 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
         //IF WE DONT FIX ONIX, THEN WE REMOVE MAP?_2PM DEADLINE
         let types_of_data = data1.types
           .map((eachobj) => eachobj.type.name)
-          .join(', ')
-          document.getElementById('main-card').innerHTML = `
+          .join(', ');
+        document.getElementById('main-card').innerHTML = `
           <div class="col s12">
           <div class="card main-card-img">
           <div class="card-image waves-effect waves-block waves-light">
@@ -30,12 +29,18 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
           <div class="name">Name: ${data1.name}</div>
           <div>Type: ${types_of_data}</div>
           <div>ID: ${data1.id}</div>
+          <div>Speed: ${data1.stats[0].base_stat}</div>
+          <div>Special-Defense: ${data1.stats[1].base_stat}</div>
+          <div>Special-Attack: ${data1.stats[2].base_stat}</div>
+          <div>Defense: ${data1.stats[3].base_stat}</div>
+          <div>Attack: ${data1.stats[4].base_stat}</div>
+          <div>HP: ${data1.stats[5].base_stat}</div>
           </p>
           <p><a id="tcgLink">Click for a random TCG card image</a></p>
           </div>
           </div>`;
-          
-          // types_of_data.forEactypes_of_data)=>{
+
+        // types_of_data.forEactypes_of_data)=>{
         fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
           .then((r) => r.json())
           .then((data) => {
@@ -96,11 +101,20 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                               <div class="type">Type: ${info.types.map(
                                 (eachobj) => eachobj.type.name
                               )}</div>
+                              <div>Speed: ${info.stats[0].base_stat}</div>
+                              <div>Special-Defense: ${
+                                info.stats[1].base_stat
+                              }</div>
+                              <div>Special-Attack: ${
+                                info.stats[2].base_stat
+                              }</div>
+                              <div>Defense: ${info.stats[3].base_stat}</div>
+                              <div>Attack: ${info.stats[4].base_stat}</div>
+                              <div>HP: ${info.stats[5].base_stat}</div>
                               </p>
-                              <a href="#">This is evolution link</a>
                             </div>
                           </div>`;
-                      
+
                       document.getElementById('weak-card').append(weakCardDiv);
                     } else if (alltypes.includes(filteredStrong[i])) {
                       let strongCardDiv = document.createElement('div');
@@ -124,7 +138,13 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                           <div class="type">Type: ${info.types.map(
                             (eachobj) => eachobj.type.name
                           )}</div>
-                          </p><a href="#">This is evolution link</a>
+                          <div>Speed: ${info.stats[0].base_stat}</div>
+                          <div>Special-Defense: ${info.stats[1].base_stat}</div>
+                          <div>Special-Attack: ${info.stats[2].base_stat}</div>
+                          <div>Defense: ${info.stats[3].base_stat}</div>
+                          <div>Attack: ${info.stats[4].base_stat}</div>
+                          <div>HP: ${info.stats[5].base_stat}</div>
+                          </p>
                         </div>
                       </div>`;
                       document
@@ -136,19 +156,25 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
             }
           });
         document.getElementById('tcgLink').addEventListener('click', (e) => {
-          e.preventDefault()
+          e.preventDefault();
 
-          fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
-            .then(r => r.json())
-            .then(pokemonData => {
-              let cardIndex = 0
-              document.getElementById('tcgLink').innerHTML =
-              `
-              <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
-              `
-            })
-        })
-    })
+          fetch(
+            `https://api.pokemontcg.io/v1/cards?name=${
+              document.getElementById('search').value
+            }`
+          )
+            .then((r) => r.json())
+            .then((pokemonData) => {
+              let cardIndex = 0;
+              document.getElementById('tcgLink').innerHTML = `
+              <img src='${
+                pokemonData.cards[
+                  Math.floor(Math.random() * pokemonData.cards.length)
+                ].imageUrl
+              }'>
+              `;
+            });
+        });
+      });
   }
 });
-
