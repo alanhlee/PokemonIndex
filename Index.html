@@ -2,10 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
     />
     <link rel="stylesheet" href="./access/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,87 +20,63 @@
       <nav class="red">
         <div class="nav-wrapper">
           <a id="logo-container" href="#" class="brand-logo center">Title</a>
-          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+
           <ul class="right hide-on-med-and-down">
             <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
             <li><a href="#">PokeIndex </a></li>
-            <li><a href="#">Search by Type</a></li>
+            <!-- <li><a href="#">Search by Type</a></li> -->
             <li><a href="#">Contact</a></li>
           </ul>
         </div>
       </nav>
     </div>
-          <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">PokeIndex </a></li>
-            <li><a href="#">Search by Type</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
+    <ul id="nav-mobile" class="sidenav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">PokeIndex </a></li>
+      <!-- <li><a href="#">Search by Type</a></li> -->
+      <li><a href="#">Contact</a></li>
+    </ul>
 
     <!-- Search Bar-->
     <div class="search-wrapper">
       <i class="material-icons" id="searchicon">search</i>
-      <input id="search" placeholder="Search">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Search
+      <input id="search" placeholder="Search" />
+      <button
+        class="btn waves-effect waves-light"
+        id="searchBtn"
+        type="submit"
+        name="action"
+      >
+        Search
       </button>
     </div>
     <!--main card-->
     <div class="row">
-      <div class="col s12">
-      <div class="card main-card-img">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://archives.bulbagarden.net/media/upload/9/97/001Bulbasaur_RB.png">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">MAIN<i class="material-icons right">more_vert</i></span>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
-          <p>Name Id Type every stats abilities and link to all evolution<p></p><a href="#">This is evolution link</a></p></p>
-        </div>
-      </div>
+      <div class="col s12" id="main-card"></div>
+      <!--weak card-->
+      <div id="weaktitle"></div>
+      <div class="col s6" id="weak-card"></div>
+      <!--strong card-->
+      <div id="strongtitle"></div>
+      <div class="col s6" id="strong-card"></div>
     </div>
-    <!--weak card-->
-    <div class="col s6">
-      <h5>Weak against</h5>
-    <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="https://archives.bulbagarden.net/media/upload/9/97/001Bulbasaur_RB.png">
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">weak<i class="material-icons right">more_vert</i></span>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
-            <p>Name Id Type every stats abilities and link to all evolution<p></p><a href="#">This is evolution link</a></p></p>
-          </div>
-        </div>
-    </div>
-    <!--strong card-->
-      <div class="col s6">
-        <h5>Strong against</h5>
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="https://archives.bulbagarden.net/media/upload/9/97/001Bulbasaur_RB.png">
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">strong<i class="material-icons right">more_vert</i></span>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
-            <p>Name Id Type every stats abilities and link to all evolution<p></p><a href="#">This is evolution link</a></p></p>
-          </div>
-        </div>
-        <!-- footer -->
-    </div>
+    <!-- footer -->
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="./access/script.js"></script>
-    <script>$(document).ready(function(){$('.sidenav').sidenav();})</script>
+    <script src="./access/againstCard.js"></script>
+    <!-- <script src="./access/script.js"></script> -->
+    <script>
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+      });
+    </script>
   </body>
 </html>
 <!-- test -->
