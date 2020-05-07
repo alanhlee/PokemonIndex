@@ -10,7 +10,6 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
     )
       .then((r) => r.json())
       .then((data1) => {
-        //IF WE DONT FIX ONIX, THEN WE REMOVE MAP?_2PM DEADLINE
         let types_of_data = data1.types
           .map((eachobj) => eachobj.type.name)
           .join(', ');
@@ -40,8 +39,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
           </div>
           </div>`;
 
-        // types_of_data.forEactypes_of_data)=>{
-        fetch(`https://pokeapi.co/api/v2/type/${types_of_data}/`)
+        fetch(`https://pokeapi.co/api/v2/type/${types_of_data.split(', ')[0]}/`)
           .then((r) => r.json())
           .then((data) => {
             let weakAgainstArray = [];
