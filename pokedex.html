@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./access/pokedex.css" />
+    <title>Pokedex</title>
+  </head>
+
+  <body>
+    <!-- Nav Bar-->
+    <div class="navbar-fixed">
+      <nav class="red">
+        <div class="nav-wrapper">
+          <a id="logo-container" href="./pokedex.html" class="brand-logo center"
+            >Pokédex</a
+          >
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="./Index.html">Home</a></li>
+            <li><a href="./aboutus.html">About us</a></li>
+            <li><a href="./pokedex.html">Pokédex </a></li>
+            <!-- <li><a href="#">Search by Type</a></li> -->
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul id="nav-mobile" class="sidenav">
+      <li><a href="./Index.html">Home</a></li>
+      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./pokedex.html">Pokédex </a></li>
+      <!-- <li><a href="#">Search by Type</a></li> -->
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <!-- card -->
+    <div class="row">
+      <div class="col s7" id="pokedex-container"></div>
+    </div>
+    <!-- script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      // start with empty array
+      //     promises.push(getPokemon);
+      //   }
+      //   Promise.all(promises).then((results) => {
+      //     const pokemon = results.map((data) => ({
+      //       name: data.name,
+      //       id: data.id,
+      //       image: data.sprites['front_default'],
+      //       type: data.types.map((type) => type.type.name).join(', '),
+      //     }));
+      //     displayPokemon(pokemon);
+      //   });
+      // };
+
+      // const fetchPokemon = () => {
+      //   const promises = [];
+      //   for (let i = 1; i <= 151; i++) {
+      //     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      //     const getPokemon = fetch(url).then((r) => r.json());
+      // const displayPokemon = (pokemon) => {
+      //   const pokedexContainer = document.getElementById('pokedex-container');
+      //   pokemon.forEach((pokemon) =>
+
+
+      const fetchPokemon = () => {
+        for (let i = 1; i <= 151; i++) {
+          const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+          fetch(url)
+            .then((r) => r.json())
+            .then((pokemon) => {
+              let pokedexDiv = document.createElement('div')
+              let types_of_data = pokemon.types
+              .map((eachobj) => eachobj.type.name)
+              .join(', ');
+              pokedexDiv.addEventListener('click', (ev) => {
+                // how to connect to index to againstcardjs
+                // window.location.href = 'Index.html?id=' + pokemon.id;
+              });
+              pokedexDiv.innerHTML = `
+            <div class="card main-card-img">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator pokemoninfocard" src='${pokemon.sprites.front_default}'>
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">${pokemon.name}<i class="material-icons right">more_vert</i></span>
+                  </div>
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Details<i class="material-icons right">close</i></span>
+                    <p>
+                    <div class="name">Name: ${pokemon.name}</div>
+                    <div>Type: ${types_of_data}</div>
+                    <div>ID: ${pokemon.id}</div>
+                    </p>
+                    <p><a href="#">This is evolution link</a></p>
+                  </div>`;
+              document.getElementById('pokedex-container').append(pokedexDiv);
+            });
+        }
+      };
+
+      fetchPokemon();
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('.sidenav').sidenav();
+      });
+    </script>
+  </body>
+</html>

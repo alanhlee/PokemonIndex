@@ -1,47 +1,37 @@
-body {
-  background-color: #fffff2;
-  margin: 0;
+/* global CSS */
+/* :root {} */
+
+/* searchbar CSS */
+/* dropdown icon CSS */
+.sidenav-trigger {
+  color: white;
 }
 
-.card {
-  list-style: none;
-  padding: 5px;
+/* main card CSS */
+.row {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   text-align: center;
-  margin: 0;
+  word-wrap: break-word;
+
 }
 
-#pokedex-container {
-  padding-inline-start: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px 10px;
-}
-
-.card-title {
-  text-transform: uppercase;
-  font-size: 32px;
-  font-weight: normal;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
-.card-subtitle {
-  margin-top: 5px;
+.col {
+  margin-bottom: 15px;
+  justify-content: baseline;
 }
 
 .card-image {
-  height: 90px;
-  width: 90px;
-  margin-bottom: 0;
+  height: 70%;
+  width: 50%;
+  margin: auto;
 }
 
-.container {
-  padding: 20px;
-  margin: 0 auto;
-}
-
-h1 {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 54px;
+.card{
+  width: 100%;
+  margin: 10px;
 }
