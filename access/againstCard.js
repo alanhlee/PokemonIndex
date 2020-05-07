@@ -31,7 +31,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
           <div>Type: ${types_of_data}</div>
           <div>ID: ${data1.id}</div>
           </p>
-          <p><a href="#">This is evolution link</a></p>
+          <p><a id="tcgLink">Click for a random TCG card image</a></p>
           </div>
           </div>`;
           
@@ -100,6 +100,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                               <a href="#">This is evolution link</a>
                             </div>
                           </div>`;
+                      
                       document.getElementById('weak-card').append(weakCardDiv);
                     } else if (alltypes.includes(filteredStrong[i])) {
                       let strongCardDiv = document.createElement('div');
@@ -134,24 +135,20 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
                 });
             }
           });
-        document.getElementById('search').value = '';
-      // });
+        document.getElementById('tcgLink').addEventListener('click', (e) => {
+          e.preventDefault()
+
+          fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
+            .then(r => r.json())
+            .then(pokemonData => {
+              let cardIndex = 0
+              document.getElementById('tcgLink').innerHTML =
+              `
+              <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
+              `
+            })
+        })
     })
   }
 });
 
-document.getElementById('tcgLink').addEventListener('click', (e) => {
-  e.preventDefault()
-
-  fetch(`https://api.pokemontcg.io/v1/cards?name=${document.getElementById('search').value}`)
-    .then(r => r.json())
-    .then(pokemonData => {
-      let cardIndex = 0
-      // console.log(pokemonData)
-      // console.log(pokemonData.cards[0])
-      document.getElementById('tcgLink').innerHTML =
-        `
-    <img src='${pokemonData.cards[Math.floor(Math.random() * pokemonData.cards.length)].imageUrl}'>
-    `
-    })
-})
