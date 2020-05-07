@@ -30,20 +30,20 @@
 
           <ul class="right hide-on-med-and-down">
             <li><a href="./index.html">Home</a></li>
-            <li><a href="./aboutus.html">About us</a></li>
+            <li><a href="./aboutus.html">About Us</a></li>
             <li><a href="./pokedex.html">Pokédex </a></li>
             <!-- <li><a href="#">Search by Type</a></li> -->
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
           </ul>
         </div>
       </nav>
     </div>
     <ul id="nav-mobile" class="sidenav">
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./aboutus.html">About Us</a></li>
       <li><a href="./pokedex.html">Pokédex </a></li>
       <!-- <li><a href="#">Search by Type</a></li> -->
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="./contact.html">Contact Us</a></li>
     </ul>
     <!-- card -->
     <div class="row">
@@ -81,8 +81,13 @@
                     <div class="name">Name: ${pokemon.name}</div>
                     <div>Type: ${types_of_data}</div>
                     <div>ID: ${pokemon.id}</div>
+                    <div>Speed: ${pokemon.stats[0].base_stat}</div>
+                    <div>Special-Defense: ${pokemon.stats[1].base_stat}</div>
+                    <div>Special-Attack: ${pokemon.stats[2].base_stat}</div>
+                    <div>Defense: ${pokemon.stats[3].base_stat}</div>
+                    <div>Attack: ${pokemon.stats[4].base_stat}</div>
+                    <div>HP: ${pokemon.stats[5].base_stat}</div>
                     </p>
-                    <p><a href="#">This is evolution link</a></p>
                   </div>`;
               document.getElementById('pokedex-container').append(pokedexDiv);
             });
