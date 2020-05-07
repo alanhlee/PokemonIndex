@@ -155,7 +155,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
           });
         document.getElementById('tcgLink').addEventListener('click', (e) => {
           e.preventDefault();
-
+          document.getElementById('tcgLink').innerHTML =`<br><i class="material-icons right">timelapse</i>`
           fetch(
             `https://api.pokemontcg.io/v1/cards?name=${
               document.getElementById('search').value
