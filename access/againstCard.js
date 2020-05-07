@@ -2,7 +2,7 @@ document.getElementById('searchBtn').addEventListener('click', (event) => {
   event.preventDefault();
   document.getElementById('weaktitle').innerHTML =
     '<h5>Weak against(L) Strong against(R)</h5>';
-  if (document.getElementById('search').value.length > 1) {
+  if (typeof document.getElementById('search').value === 'string' && document.getElementById('search').value.length > 0) {
     fetch(
       `https://pokeapi.co/api/v2/pokemon/${
         document.getElementById('search').value
